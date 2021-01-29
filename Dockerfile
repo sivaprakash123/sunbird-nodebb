@@ -25,4 +25,18 @@ ENV NODE_ENV=production \
 
 EXPOSE 4567
 
-CMD node ./nodebb build ;  node ./nodebb start
+### Below env vars to be set prior running the container
+## Note:
+## password won't get overwritten if you run
+## 'node app --setup' multiple times
+## Default username is admin
+########################################################
+# ENV database=mongo
+# ENV secret="1d57ba64-86d4-43ff-bd10-f6e9e0782899"
+# ENV url="http://0.0.0.0:4567"
+# ENV mongo__host="http://127.0.0.1"
+# ENV mongo__database="nodebb"
+# ENV admin__password="nodebbAdminPassword00"
+########################################################
+
+CMD node ./nodebb setup ;  node ./nodebb start
