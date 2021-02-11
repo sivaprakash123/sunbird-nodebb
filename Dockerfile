@@ -19,7 +19,6 @@ RUN npm install https://github.com/NodeBB/nodebb-plugin-write-api.git#cc795803a1
 
 
 
-
 ENV NODE_ENV=production \
     daemon=false \
     silent=false
