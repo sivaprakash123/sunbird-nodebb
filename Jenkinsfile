@@ -17,6 +17,7 @@ node('build-slave') {
                 cleanWs()
                 def scmVars = checkout scm
                 checkout scm: [$class: 'GitSCM', branches: [[name: "$params.github_release_tag"]], userRemoteConfigs: [[url: scmVars.GIT_URL]]]
+                // We've to get the evaluated value of ${public_repo_branch}
                 build_tag = sh(script: "echo "+params.github_release_tag.split('/')[-1] + "_" + env.BUILD_NUMBER, returnStdout: true).trim()
                 println(ANSI_BOLD + ANSI_YELLOW + "github_release_tag specified, building from github_release_tag: " + params.github_release_tag + ANSI_NORMAL)
                 echo "build_tag: " + build_tag
