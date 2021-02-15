@@ -7,41 +7,44 @@ node('build-slave') {
         String ANSI_YELLOW = "\u001B[33m"
 
         ansiColor('xterm') {
-          //  stage('Checkout') 
-                tag_name = env.JOB_NAME.split("/")[-1]
-                if (!env.hub_org) {
-                    println(ANSI_BOLD + ANSI_RED + "Uh Oh! Please set a Jenkins environment variable named hub_org with value as registery/sunbidrded" + ANSI_NORMAL)
-                    error 'Please resolve the errors and rerun..'
-                }
-                else
-            cleanWs()
+            //  stage('Checkout') 
+            tag_name = env.JOB_NAME.split("/")[-1]
+            if (!env.hub_org) {
+                println(ANSI_BOLD + ANSI_RED + "Uh Oh! Please set a Jenkins environment variable named hub_org with value as registery/sunbidrded" + ANSI_NORMAL)
+                error 'Please resolve the errors and rerun..'
+            }
+            else
+                cleanWs()
             def scmVars = checkout scm
             checkout scm: [$class: 'GitSCM', branches: [[name: "refs/tags/$tag_name"]], userRemoteConfigs: [[url: scmVars.GIT_URL]]]
             build_tag = tag_name + "_" + env.BUILD_NUMBER
             commit_hash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
             artifact_version = tag_name + "_" + commit_hash
-            echo "build_tag: " + build_tag    
-          
+            echo "build_tag: " + build_tag
 
-          //  stage('Build') 
-                env.NODE_ENV = "build"
-                sh("git clone https://github.com/NodeBB/NodeBB.git -b master")
-		sh("cp Dockerfile NodeBB")
-		sh("cp build.sh NodeBB")
-                print "Environment will be : ${env.NODE_ENV}"
-                sh('chmod 777 NodeBB/build.sh')
-                sh("bash ./NodeBB/build.sh master__${build_tag} ${env.NODE_NAME} ${hub_org}")
-            
-        //    stage('ArchiveArtifacts') 
-                archiveArtifacts "metadata.json"
-                currentBuild.description = "${build_tag}"
-            
+
+            //  stage('Build') 
+            env.NODE_ENV = "build"
+            sh("git clone https://github.com/NodeBB/NodeBB.git -b master")
+            sh("cp Dockerfile NodeBB")
+            sh("cp build.sh NodeBB")
+            print "Environment will be : ${env.NODE_ENV}"
+            sh('chmod 777 NodeBB/build.sh')
+            sh("bash ./NodeBB/build.sh master__${build_tag} ${env.NODE_NAME} ${hub_org}")
+
+            //    stage('ArchiveArtifacts') 
+            archiveArtifacts "metadata.json"
+            currentBuild.description = "${build_tag}"
         }
-
+        currentBuild.result = "SUCCESS"
+        slack_notify(currentBuild.result, tag_name)
+        email_notify()
+        auto_build_deploy()
     }
     catch (err) {
         currentBuild.result = "FAILURE"
+        slack_notify(currentBuild.result, tag_name)
+        email_notify()
         throw err
     }
-
 }
