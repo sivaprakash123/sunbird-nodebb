@@ -10,6 +10,7 @@ node('build-slave') {
         ansiColor('xterm') {
             //  stage('Checkout') 
             tag_name = env.JOB_NAME.split("/")[-1]
+            pre_checks()
             if (!env.hub_org) {
                 println(ANSI_BOLD + ANSI_RED + "Uh Oh! Please set a Jenkins environment variable named hub_org with value as registery/sunbidrded" + ANSI_NORMAL)
                 error 'Please resolve the errors and rerun..'
