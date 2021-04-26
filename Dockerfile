@@ -11,7 +11,7 @@ RUN npm install --only=prod && \
     npm cache clean --force
 
 
-RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-oidc.git#7482a20a2c2670d4409ef936df35fd260293bcce
+RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-oidc.git#379a6d95fa4c47c79c1f1309aefc51a2fd4768c4
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-api.git#454c961abe0413ea2e86b4aecadcec43e4e8360e
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-telemetry.git#f6ae10182c881b6d05b1d29208ac2d328d920f11
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-azure-storage.git#3469f7a2169ab08bdc1c7b9b756b1405d387e9c6
