@@ -32,7 +32,7 @@ node('build-slave') {
             sh("cp build.sh NodeBB")
             print "Environment will be : ${env.NODE_ENV}"
             sh('chmod 777 NodeBB/build.sh')
-            sh("bash ./NodeBB/build.sh master__${build_tag} ${env.NODE_NAME} ${hub_org}")
+            sh("bash ./NodeBB/build.sh ${build_tag}_v1.16.0 ${env.NODE_NAME} ${hub_org}")
 
             //    stage('ArchiveArtifacts') 
             archiveArtifacts "metadata.json"
