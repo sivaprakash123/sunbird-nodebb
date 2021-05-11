@@ -11,12 +11,11 @@ RUN npm install --only=prod && \
     npm cache clean --force
 
 
-RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-oidc.git#7482a20a2c2670d4409ef936df35fd260293bcce
-RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-api.git#017df885e0ecc0254835b0a844fab0a11366a5f4
-RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-telemetry.git#f6ae10182c881b6d05b1d29208ac2d328d920f11
-RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-azure-storage.git#3469f7a2169ab08bdc1c7b9b756b1405d387e9c6
-RUN npm install https://github.com/NodeBB/nodebb-plugin-write-api.git#91dc9d3b0381c517efc71910c1be83cb24313eca
-
+RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-oidc.git#master
+RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-api.git#main
+RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-telemetry.git#master
+RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-azure-storage.git#main
+RUN npm install https://github.com/NodeBB/nodebb-plugin-write-api.git#master
 
 
 ENV NODE_ENV=production \
