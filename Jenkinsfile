@@ -25,7 +25,7 @@ node('build-slave') {
 
             stage('Build') {
                 env.NODE_ENV = "build"
-                sh("git clone https://github.com/NodeBB/NodeBB.git -b ${params.nodebb_branch}")
+                sh("git clone https://github.com/sivaprakash123/NodeBB.git -b ${params.nodebb_branch}")
                 sh("cp Dockerfile NodeBB")
                 sh("cp build.sh NodeBB")
                 print "Environment will be : ${env.NODE_ENV}"
