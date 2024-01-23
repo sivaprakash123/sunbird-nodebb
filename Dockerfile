@@ -13,8 +13,8 @@ RUN npm install --only=prod && \
 
 #RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-oidc.git
 ##RUN npm install https://github.com/sunbird-cb/nodebb-plugin-sunbird-oidc.git ### testing the OIDC issue fix
-RUN npm install https://github.com/sunbird-cb/nodebb-plugin-sunbird-oidc.git#7729d47d66f7a6947b47e19efc3c991f52856e2d
-RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-api.git#22e943811241bad88c45e985a8bfe9d5baec2ba1
+###test###RUN npm install https://github.com/sunbird-cb/nodebb-plugin-sunbird-oidc.git#7729d47d66f7a6947b47e19efc3c991f52856e2d
+###test###RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-api.git#22e943811241bad88c45e985a8bfe9d5baec2ba1
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-sunbird-telemetry.git#f6ae10182c881b6d05b1d29208ac2d328d920f11
 RUN npm install https://github.com/Sunbird-Ed/nodebb-plugin-azure-storage.git#3469f7a2169ab08bdc1c7b9b756b1405d387e9c6
 RUN npm install https://github.com/NodeBB/nodebb-plugin-write-api.git#91dc9d3b0381c517efc71910c1be83cb24313eca
